@@ -17,12 +17,12 @@ pygame.display.set_caption('A bit Racey')
 
 black = (0,0,0)
 white = (255,255,255)
+red = (255,0,0)
+
+car_width = 73
 
 # Track time in the game
 clock = pygame.time.Clock()
-
-# Sets to True when user exits window
-crashed = False
 
 # Load racecar image into carImg variable
 carImg = pygame.image.load('racecar.png')
@@ -31,46 +31,49 @@ carImg = pygame.image.load('racecar.png')
 def car(x,y):
     gameDisplay.blit(carImg,(x,y))
 
-# Starting points for car defined
-x =  (display_width * 0.45)
-y = (display_height * 0.8)
+def game_loop():
+    # Starting points for car defined
+    x =  (display_width * 0.45)
+    y = (display_height * 0.8)
 
-# 
-x_change = 0
-car_speed = 0
-
-while not crashed:
-    # Game loop
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            crashed = True
+    # 
+    x_change = 0
     
-        #############################
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                x_change = -5
-            elif event.key == pygame.K_RIGHT:
-                x_change = 5
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
-                x_change = 0
-        ###############################
+    gameExit = False
 
-    #############
-    x += x_change
-    #############
+    while not crashed:
+        # Game loop
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                crashed = True
+        
+            #############################
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_a:
+                    x_change = -5
+                elif event.key == pygame.K_d:
+                    x_change = 5
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_a or event.key == pygame.K_d:
+                    x_change = 0
+            #############################
+            print(event)
+
+        #############
+        x += x_change
+        #############
 
 
-    # Paint the game surface white.    
-    gameDisplay.fill(white)
-    car(x,y)
-    
-    # Updates a portion of the game surface. Without arguments is the same as display.flip().
-    # Whole surface is updated
-    pygame.display.update()
+        # Paint the game surface white.    
+        gameDisplay.fill(white)
+        car(x,y)
+        
+        # Updates a portion of the game surface. Without arguments is the same as display.flip().
+        # Whole surface is updated
+        pygame.display.update()
 
-    # Frames per second
-    clock.tick(60)
+        # Frames per second
+        clock.tick(60)
 
 pygame.quit()
 quit()
