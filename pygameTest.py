@@ -5,12 +5,18 @@ import pygame
 # Initiate pygame
 pygame.init()
 
+display_width = 800
+display_height = 600
+
 # Game surface or canvas that game is drawn onto.  Function literally returns a pygame.Surface object.
 # Resolution 800px by 600px.  Double parenthesis because TUPLE. Non-tuple argument will blow-up function.
-gameDisplay = pygame.display.set_mode((800,600))
+gameDisplay = pygame.display.set_mode((display_width,display_height))
 
 # Window title
 pygame.display.set_caption('A bit Racey')
+
+black = (0,0,0)
+white = (255,255,255)
 
 # Track time in the game
 clock = pygame.time.Clock()
@@ -18,14 +24,46 @@ clock = pygame.time.Clock()
 # Sets to True when user exits window
 crashed = False
 
-# Game loop
-while not crashed:
+# Load racecar image into carImg variable
+carImg = pygame.image.load('racecar.png')
 
+# Draw the image to the game surface and place it at x and y
+def car(x,y):
+    gameDisplay.blit(carImg,(x,y))
+
+# Starting points for car defined
+x =  (display_width * 0.45)
+y = (display_height * 0.8)
+
+# 
+x_change = 0
+car_speed = 0
+
+while not crashed:
+    # Game loop
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             crashed = True
-        # Prints every event that occurs in the game window to the console
-        print(event)
+    
+        #############################
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                x_change = -5
+            elif event.key == pygame.K_RIGHT:
+                x_change = 5
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
+                x_change = 0
+        ###############################
+
+    #############
+    x += x_change
+    #############
+
+
+    # Paint the game surface white.    
+    gameDisplay.fill(white)
+    car(x,y)
     
     # Updates a portion of the game surface. Without arguments is the same as display.flip().
     # Whole surface is updated
@@ -33,3 +71,6 @@ while not crashed:
 
     # Frames per second
     clock.tick(60)
+
+pygame.quit()
+quit()
