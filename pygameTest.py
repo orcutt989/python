@@ -27,16 +27,22 @@ clock = pygame.time.Clock()
 # Load racecar image into carImg variable
 carImg = pygame.image.load('racecar.png')
 
+#####
+def things(thingx, thingy, thingw, thingh, color):
+        pygame.draw.rect(gameDisplay,color, [thingx, thingy, thingw, thingh])
+#####
+
+
 # Draw the image to the game surface and place it at x and y
 def car(x,y):
     gameDisplay.blit(carImg,(x,y))
 
 def text_objects(text,font):
-    textSurface = font.redner(text, True, black)
+    textSurface = font.render(text, True, black)
     return textSurface, textSurface.get_rect()
 
 def message_display(text):
-    largeText = pygame.font.Font('freeansbold.ttf',115)
+    largeText = pygame.font.Font('freesansbold.ttf',115)
     TextSurf, TextRect = text_objects(text,largeText)
     TextRect.center = ((display_width/2),(display_height/2))
     gameDisplay.blit(TextSurf, TextRect)
@@ -56,7 +62,7 @@ def game_loop():
     y = (display_height * 0.8)
 
     x_change = 0
-    
+
     gameExit = False
 
     while not gameExit:
