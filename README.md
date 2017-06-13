@@ -1,8 +1,8 @@
 # python
 
+### For Windows
 You're going to need Python https://www.python.org/downloads
 
-### For Windows
 
 Add these locations to your PATH environment variable in a command prompt after python installation for the command line to work properly.
 ```batch
