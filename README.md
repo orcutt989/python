@@ -8,8 +8,7 @@ pip install pygame
 ```
 ### For Windows
 
-Add these locations to your PATH environment variable with PowerShell after python installation for the command line to work properly.
-```powershell
-$env:Path = "%LOCALAPPDATA%\Programs\Python\Python36-32";
-$env:Path = "%LOCALAPPDATA%\Programs\Python\Python36-32\Scripts";
+Add these locations to your PATH environment variable in a command prompt after python installation for the command line to work properly.
+```batch
+setx path "%path%;C:\Users\jorcutt\AppData\Local\Programs\Git\cmd
 ```
