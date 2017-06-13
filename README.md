@@ -15,7 +15,10 @@ setx /m path "%path%;%localappdata%\Programs\Python\Python36-32\Scripts"
 ```
 
 
-...and you'll need to install pygame 
+...and you'll need to install pygame
+```batch
+python
+```
 ```python
 pip install pygame
 ```
