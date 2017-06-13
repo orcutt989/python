@@ -6,7 +6,7 @@ You're going to need Python https://www.python.org/downloads
 
 Add these locations to your PATH environment variable in a command prompt after python installation for the command line to work properly.
 ```batch
-setx /m path "%path%;%localappdata%\Programs\Python\Python36-32\python.exe"
+setx /m path "%path%;%localappdata%\Programs\Python\Python36-32\"
 ```
 
 Same thing for pip
